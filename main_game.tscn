@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://drqpqovxyoife"]
+[gd_scene load_steps=4 format=3 uid="uid://drqpqovxyoife"]
 
-[ext_resource type="PackedScene" uid="uid://ksf6wtl1u018" path="res://Scenes/Characters/Player/player.tscn" id="1_uq5nr"]
+[ext_resource type="PackedScene" uid="uid://clmjvxbb85c33" path="res://Scenes/Characters/Player/player.tscn" id="1_uq5nr"]
+[ext_resource type="PackedScene" uid="uid://1nlrgjcqd8vd" path="res://Scenes/Characters/Civilian/civilian.tscn" id="2_1xkmb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vayp2"]
 size = Vector2(1152, 176)
@@ -20,4 +21,8 @@ offset_top = -88.0
 offset_right = 575.0
 offset_bottom = 88.0
 
-[node name="Node2D" parent="." instance=ExtResource("1_uq5nr")]
+[node name="Civilian" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_1xkmb")]
+position = Vector2(136, 104)
+player = NodePath("../Player")
+
+[node name="Player" parent="." instance=ExtResource("1_uq5nr")]
