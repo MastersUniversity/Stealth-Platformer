@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://drqpqovxyoife"]
+[gd_scene load_steps=5 format=3 uid="uid://drqpqovxyoife"]
 
+[ext_resource type="Script" path="res://MainGame.gd" id="1_i8wpo"]
 [ext_resource type="PackedScene" uid="uid://clmjvxbb85c33" path="res://Scenes/Characters/Player/player.tscn" id="1_uq5nr"]
 [ext_resource type="PackedScene" uid="uid://1nlrgjcqd8vd" path="res://Scenes/Characters/Civilian/civilian.tscn" id="2_1xkmb"]
 
@@ -7,6 +8,7 @@
 size = Vector2(1152, 176)
 
 [node name="MainGame" type="Node2D"]
+script = ExtResource("1_i8wpo")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(265, 216)
