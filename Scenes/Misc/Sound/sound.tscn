@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn0n5f7momi85"]
+
+[ext_resource type="Script" path="res://Scenes/Misc/Sound/Sound.gd" id="1_ttaev"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_orhrs"]
+radius = 8.0
+
+[node name="Sound" type="Area2D"]
+script = ExtResource("1_ttaev")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_orhrs")
+
+[node name="TestAreaRect" type="ColorRect" parent="CollisionShape2D"]
+visible = false
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
