@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b2qbyvgxy3vnw" path="res://Scenes/Misc/Sound Listener/sound_listener.tscn" id="2_g2tkq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5xuwi"]
-size = Vector2(288, 20)
+size = Vector2(288, 16)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_txx54")
@@ -27,5 +27,18 @@ color = Color(0, 1, 1, 1)
 
 [node name="SoundListener" parent="." instance=ExtResource("2_g2tkq")]
 position = Vector2(32, 0)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(176, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+shape = SubResource("RectangleShape2D_5xuwi")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D2"]
+offset_left = -144.0
+offset_top = -8.0
+offset_right = 144.0
+offset_bottom = 8.0
+color = Color(0, 1, 1, 1)
 
 [connection signal="heard_sound" from="SoundListener" to="." method="_on_sound_listener_heard_sound"]
