@@ -1,0 +1,97 @@
+[gd_scene load_steps=8 format=3 uid="uid://cq1ojngrnd3pg"]
+
+[ext_resource type="PackedScene" uid="uid://ccdwfpgemyen2" path="res://door.tscn" id="1_g0uvs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ege7i"]
+size = Vector2(52, 649)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_p3duo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8cym7"]
+size = Vector2(1199, 67)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_kuw0c"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_s5qdx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_72opj"]
+size = Vector2(573, 20)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Left Wall" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Wall"]
+position = Vector2(-26, 330)
+shape = SubResource("RectangleShape2D_ege7i")
+
+[node name="Sprite2D" type="Sprite2D" parent="Left Wall"]
+position = Vector2(-26, 331)
+scale = Vector2(51, 647)
+texture = SubResource("PlaceholderTexture2D_p3duo")
+
+[node name="Right Wall" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Wall"]
+position = Vector2(1178, 330)
+shape = SubResource("RectangleShape2D_ege7i")
+
+[node name="Sprite2D" type="Sprite2D" parent="Right Wall"]
+position = Vector2(1179.75, 325.75)
+scale = Vector2(54.5, 653.5)
+texture = SubResource("PlaceholderTexture2D_p3duo")
+
+[node name="Top Wall" type="Area2D" parent="."]
+position = Vector2(581, -40)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top Wall"]
+position = Vector2(18, 3)
+shape = SubResource("RectangleShape2D_8cym7")
+
+[node name="Sprite2D" type="Sprite2D" parent="Top Wall"]
+position = Vector2(20, 3.8147e-06)
+scale = Vector2(1198, 77)
+texture = SubResource("PlaceholderTexture2D_kuw0c")
+
+[node name="Bottom Wall" type="Area2D" parent="."]
+position = Vector2(581, -40)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom Wall"]
+position = Vector2(20, 725)
+shape = SubResource("RectangleShape2D_8cym7")
+
+[node name="Sprite2D" type="Sprite2D" parent="Bottom Wall"]
+position = Vector2(19, 727)
+scale = Vector2(1198, 77)
+texture = SubResource("PlaceholderTexture2D_kuw0c")
+
+[node name="Background" type="Area2D" parent="."]
+position = Vector2(580, 306)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
+visible = false
+position = Vector2(-4, 19)
+scale = Vector2(-1148, 647.5)
+texture = SubResource("PlaceholderTexture2D_s5qdx")
+
+[node name="Door" parent="." instance=ExtResource("1_g0uvs")]
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(652, 436)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(213.5, -38)
+shape = SubResource("RectangleShape2D_72opj")
+
+[node name="Area2D2" type="Area2D" parent="."]
+position = Vector2(652, 436)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(-364, -229)
+shape = SubResource("RectangleShape2D_72opj")
+
+[node name="Door2" parent="." instance=ExtResource("1_g0uvs")]
+position = Vector2(1117, 338)
+
+[node name="Door3" parent="." instance=ExtResource("1_g0uvs")]
+position = Vector2(26, 147)
