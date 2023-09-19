@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://clmjvxbb85c33"]
+[gd_scene load_steps=22 format=3 uid="uid://clmjvxbb85c33"]
 
 [ext_resource type="Script" path="res://Scenes/Characters/Player/Player.gd" id="1_875am"]
 [ext_resource type="Texture2D" uid="uid://b541242e51dv2" path="res://Assets/Sprites/Characters/Player/Player_Temp.png" id="1_u40yy"]
@@ -180,6 +180,22 @@ tracks/0/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_47t5r"]
+resource_name = "Throw"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerTorso:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [10, 11, 12, 13]
+}
+
 [sub_resource type="Animation" id="Animation_0cnjt"]
 resource_name = "Walk"
 length = 0.8
@@ -201,6 +217,7 @@ tracks/0/keys = {
 _data = {
 "Idle": SubResource("Animation_vpfsa"),
 "RESET": SubResource("Animation_ixjwt"),
+"Throw": SubResource("Animation_47t5r"),
 "Walk": SubResource("Animation_0cnjt")
 }
 
@@ -225,7 +242,6 @@ position = Vector2(0, 21)
 sound_radius = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(4, 4)
 position_smoothing_speed = 10.0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true

@@ -12,6 +12,7 @@ const JUMP_VELOCITY = -300.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var current_speed = SPEED
 var current_sound = 0
+var throwing = false
 
 @onready var leg_animations = $LegAnimationPlayer
 @onready var torso_animations = $TorsoAnimationPlayer
@@ -48,10 +49,15 @@ func _physics_process(delta):
 		var mouse_location = get_local_mouse_position()
 		mouse_location.x = clamp(mouse_location.x, -100, 100)
 		mouse_location.y = clamp(mouse_location.y, -100, 100)
+		throwing = true
+		torso_animations.play("Throw")
+		await get_tree().create_timer(0.2).timeout
 		var rock = preload("res://Scenes/Items/Rock/rock.tscn").instantiate()
-		rock.position = self.global_position
+		rock.position = self.global_position + Vector2(0,-10)
 		rock.launch = Vector2(mouse_location.x*5 + velocity.x, mouse_location.y*5 + velocity.y)
 		self.get_parent().add_child(rock)
+		await get_tree().create_timer(0.1).timeout
+		throwing = false
 	
 	#Makes the player move around
 	move_and_slide()
@@ -75,7 +81,8 @@ func stand_up():
 func walk(direction):
 	if direction:
 		leg_animations.play("Walk")
-		torso_animations.play("Walk")
+		if not throwing:
+			torso_animations.play("Walk")
 		if direction < 0:
 			$PlayerLegs.flip_h = true
 			$PlayerTorso.flip_h = true
@@ -87,7 +94,8 @@ func walk(direction):
 		$Sound.sound_radius = current_sound
 	elif is_on_floor():
 		leg_animations.play("Idle")
-		torso_animations.play("Idle")
+		if not throwing:
+			torso_animations.play("Idle")
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		$Sound.sound_radius = 0
 	else:
