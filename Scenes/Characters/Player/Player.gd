@@ -1,10 +1,10 @@
 extends CharacterBody2D
 
-
+# Constants for player movement
 const SPEED = 100.0
-const WALK_SOUND = 3.0
+const WALK_SOUND = 4.0
 const CROUCH_SPEED = 50.0
-const CROUCH_SOUND = 1.5
+const CROUCH_SOUND = 2.0
 const JUMP_VELOCITY = -300.0
 
 
@@ -24,19 +24,12 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	
+	# Handle whether or not the player is crouching
 	if Input.is_key_pressed(KEY_S):
-		current_speed = CROUCH_SPEED
-		current_sound = CROUCH_SOUND
-		$Sprite2D.scale.y = 0.5
-		$WalkingColider.disabled = true
-		$CrouchingCollider.disabled = false
+		crouch()
 		
 	else:
-		current_speed = SPEED
-		current_sound = WALK_SOUND
-		$Sprite2D.scale.y = 1
-		$WalkingColider.disabled = false
-		$CrouchingCollider.disabled = true
+		stand_up()
 		
 	# Handles making the sound based on what the player is doing
 	if velocity.y < JUMP_VELOCITY * .9:
@@ -45,16 +38,37 @@ func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis("ui_left", "ui_right")
+	
+	# Make the player walk
+	walk(direction)
+	
+	#Makes the player move around
+	move_and_slide()
+
+
+func crouch():
+	current_speed = CROUCH_SPEED
+	current_sound = CROUCH_SOUND
+	$Sprite2D.scale.y = 0.5
+	$WalkingColider.disabled = true
+	$CrouchingCollider.disabled = false
+
+
+func stand_up():
+	current_speed = SPEED
+	current_sound = WALK_SOUND
+	$Sprite2D.scale.y = 1
+	$WalkingColider.disabled = false
+	$CrouchingCollider.disabled = true
+
+func walk(direction):
 	if direction:
 		velocity.x = move_toward(velocity.x, direction * current_speed, current_speed/10)
-		$Sound.sound_radius = current_sound
 		$Sound.set_global_location_vector(self.global_position)
+		$Sound.sound_radius = current_sound
 	elif is_on_floor():
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		$Sound.sound_radius = 0
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED/30)
 		$Sound.sound_radius = 0
-	
-	
-	move_and_slide()
