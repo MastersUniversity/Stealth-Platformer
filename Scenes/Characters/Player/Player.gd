@@ -13,6 +13,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var current_speed = SPEED
 var current_sound = 0
 
+@onready var leg_animations = $LegAnimationPlayer
+@onready var torso_animations = $TorsoAnimationPlayer
 
 func _physics_process(delta):
 	
@@ -21,11 +23,11 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 
 	# Handle Jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	
 	# Handle whether or not the player is crouching
-	if Input.is_key_pressed(KEY_S):
+	if Input.is_action_pressed("Crouch"):
 		crouch()
 		
 	else:
@@ -37,10 +39,19 @@ func _physics_process(delta):
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = Input.get_axis("ui_left", "ui_right")
+	var direction = Input.get_axis("Move_Left", "Move_Right")
 	
 	# Make the player walk
 	walk(direction)
+	
+	if Input.is_action_just_released("Throw"):
+		var mouse_location = get_local_mouse_position()
+		mouse_location.x = clamp(mouse_location.x, -100, 100)
+		mouse_location.y = clamp(mouse_location.y, -100, 100)
+		var rock = preload("res://Scenes/Items/Rock/rock.tscn").instantiate()
+		rock.position = self.global_position
+		rock.launch = Vector2(mouse_location.x*5 + velocity.x, mouse_location.y*5 + velocity.y)
+		self.get_parent().add_child(rock)
 	
 	#Makes the player move around
 	move_and_slide()
@@ -63,10 +74,20 @@ func stand_up():
 
 func walk(direction):
 	if direction:
+		leg_animations.play("Walk")
+		torso_animations.play("Walk")
+		if direction < 0:
+			$PlayerLegs.flip_h = true
+			$PlayerTorso.flip_h = true
+		else:
+			$PlayerLegs.flip_h = false
+			$PlayerTorso.flip_h = false
 		velocity.x = move_toward(velocity.x, direction * current_speed, current_speed/10)
 		$Sound.set_global_location_vector(self.global_position)
 		$Sound.sound_radius = current_sound
 	elif is_on_floor():
+		leg_animations.play("Idle")
+		torso_animations.play("Idle")
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		$Sound.sound_radius = 0
 	else:

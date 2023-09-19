@@ -12,6 +12,7 @@ script = ExtResource("1_ttaev")
 shape = SubResource("CircleShape2D_orhrs")
 
 [node name="TestAreaRect" type="ColorRect" parent="CollisionShape2D"]
+visible = false
 offset_left = -8.0
 offset_top = -8.0
 offset_right = 8.0
