@@ -18,10 +18,8 @@ func _physics_process(delta):
 	
 	if pursuing:
 		if faceLeft:
-			scale.x = 1
 			velocity.x = move_toward(velocity.x, -SPEED, 1)
 		else:
-			scale.x = -1
 			velocity.x = move_toward(velocity.x, SPEED, 1)
 	else:
 		velocity.x = move_toward(velocity.x, 0, 2)
@@ -41,13 +39,14 @@ func _on_area_2d_body_exited(body):
 
 func _on_sound_listener_heard_sound(body):
 	pursuing = true
-	var soundLocation = body.get_global_location()
-	check_direction(soundLocation)
+	check_direction(body.get_global_location())
 		
 func check_direction(soundLocation):
-	if soundLocation.x < transform.x.x:
+	if soundLocation < get_global_position() and faceLeft == false:
+		scale.x *= -1
 		faceLeft = true
-	elif soundLocation.x > transform.x.x:
+	elif soundLocation > get_global_position() and faceLeft == true:
+		scale.x *= -1
 		faceLeft = false
 		
 	
