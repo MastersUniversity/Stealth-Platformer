@@ -45,7 +45,7 @@ color = Color(0, 1, 1, 1)
 position = Vector2(32, 0)
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2(176, 0)
+position = Vector2(176, 3)
 collision_layer = 3
 collision_mask = 3
 

@@ -13,6 +13,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var current_speed = SPEED
 var current_sound = 0
 var throwing = false
+var crouching = false
 
 @onready var leg_animations = $LegAnimationPlayer
 @onready var torso_animations = $TorsoAnimationPlayer
@@ -47,14 +48,15 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_released("Throw"):
 		var mouse_location = get_local_mouse_position()
-		mouse_location.x = clamp(mouse_location.x, -100, 100)
-		mouse_location.y = clamp(mouse_location.y, -100, 100)
+		var magnitude = sqrt(mouse_location.x**2 + mouse_location.y**2)
+		var clamped_x = mouse_location.x/magnitude * min(magnitude, 60)
+		var clamped_y = mouse_location.y/magnitude * min(magnitude, 60)
 		throwing = true
 		torso_animations.play("Throw")
 		await get_tree().create_timer(0.2).timeout
 		var rock = preload("res://Scenes/Items/Rock/rock.tscn").instantiate()
 		rock.position = self.global_position + Vector2(0,-10)
-		rock.launch = Vector2(mouse_location.x*5 + velocity.x, mouse_location.y*5 + velocity.y)
+		rock.launch = Vector2(clamped_x*7 + velocity.x, clamped_y*7 + velocity.y)
 		self.get_parent().add_child(rock)
 		await get_tree().create_timer(0.1).timeout
 		throwing = false
@@ -64,6 +66,7 @@ func _physics_process(delta):
 
 
 func crouch():
+	crouching = true
 	current_speed = CROUCH_SPEED
 	current_sound = CROUCH_SOUND
 	$Sprite2D.scale.y = 0.5
@@ -72,6 +75,7 @@ func crouch():
 
 
 func stand_up():
+	crouching = false
 	current_speed = SPEED
 	current_sound = WALK_SOUND
 	$Sprite2D.scale.y = 1
@@ -80,9 +84,13 @@ func stand_up():
 
 func walk(direction):
 	if direction:
-		leg_animations.play("Walk")
-		if not throwing:
-			torso_animations.play("Walk")
+		if crouching:
+			leg_animations.play("Crouch")
+			torso_animations.play("Crouch")
+		else:
+			leg_animations.play("Walk")
+			if not throwing:
+				torso_animations.play("Walk")
 		if direction < 0:
 			$PlayerLegs.flip_h = true
 			$PlayerTorso.flip_h = true
