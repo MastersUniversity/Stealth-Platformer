@@ -6,7 +6,7 @@ const JUMP_VELOCITY = -400.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-var pursuing = false
+var pursuing : bool = false
 var faceLeft = true
 @export var player = Node2D
 
@@ -26,6 +26,8 @@ func _physics_process(delta):
 	
 	move_and_slide()
 
+func set_pursuit(state):
+	pursuing = state
 
 func _on_area_2d_body_entered(body):
 	if body == player:
@@ -40,6 +42,8 @@ func _on_area_2d_body_exited(body):
 func _on_sound_listener_heard_sound(body):
 	pursuing = true
 	check_direction(body.get_global_location())
+		
+		
 		
 func check_direction(soundLocation):
 	if soundLocation < get_global_position() and faceLeft == false:

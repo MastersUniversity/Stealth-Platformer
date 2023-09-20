@@ -28,6 +28,9 @@ script = ExtResource("3_xs1v7")
 polygon = PackedVector2Array(0, -10, -128, -88, -128, 80)
 
 [node name="NearSight" type="Area2D" parent="."]
+position = Vector2(-1.69407e-21, 0)
+scale = Vector2(1, 1)
+script = ExtResource("3_xs1v7")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="NearSight"]
 position = Vector2(1.42109e-14, -5)
@@ -37,7 +40,6 @@ polygon = PackedVector2Array(0, -10, -128, -88, -128, 80)
 [node name="Ear" parent="." instance=ExtResource("3_hxvqy")]
 position = Vector2(5, -8)
 
-[connection signal="body_entered" from="FarSight" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="FarSight" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="FarSight" to="FarSight" method="_on_body_entered"]
 [connection signal="body_entered" from="NearSight" to="." method="_on_area_2d_body_entered"]
 [connection signal="heard_sound" from="Ear" to="." method="_on_sound_listener_heard_sound"]
