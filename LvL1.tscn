@@ -303,7 +303,28 @@ layer_0/tile_data = PackedInt32Array(1245219, 196613, 3, 1245218, 196613, 3, 124
 position = Vector2(1134, 625)
 
 [node name="Civilian2" parent="." instance=ExtResource("3_omt1i")]
-position = Vector2(495, 582)
+position = Vector2(286, 643)
 
 [node name="Civilian3" parent="." instance=ExtResource("3_omt1i")]
-position = Vector2(776, 645)
+position = Vector2(788, 641)
+
+[node name="Civilian4" parent="." instance=ExtResource("3_omt1i")]
+position = Vector2(-92, 535)
+
+[node name="Civilian5" parent="." instance=ExtResource("3_omt1i")]
+position = Vector2(-2189, 599)
+
+[node name="Civilian3" parent="Civilian5" instance=ExtResource("3_omt1i")]
+position = Vector2(-526, -41)
+
+[node name="Civilian6" parent="." instance=ExtResource("3_omt1i")]
+position = Vector2(-995, 601)
+
+[node name="Civilian7" parent="." instance=ExtResource("3_omt1i")]
+position = Vector2(-242, 646)
+
+[node name="Civilian8" parent="." instance=ExtResource("3_omt1i")]
+position = Vector2(-257, 537)
+
+[node name="Civilian9" parent="." instance=ExtResource("3_omt1i")]
+position = Vector2(-1578, 620)
