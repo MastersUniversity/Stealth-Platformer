@@ -24,5 +24,6 @@ color = Color(0.498039, 0.423529, 1, 1)
 [node name="Player" parent="." instance=ExtResource("1_63nm5")]
 position = Vector2(1, 0)
 
-[node name="Civilian" parent="." instance=ExtResource("2_ryxij")]
+[node name="Civilian" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_ryxij")]
 position = Vector2(144, -8)
+player = NodePath("../Player")

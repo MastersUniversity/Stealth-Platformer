@@ -2,7 +2,7 @@ extends Node2D
 
 @export var player = Node2D
 
-var player_invisibility = [0,0]
+var player_invisibility = [51,51]
 
 var alarm_triggered : bool = false
 

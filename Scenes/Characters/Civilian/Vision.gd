@@ -1,14 +1,15 @@
 extends Node
 
-@export var player = Node2D
-var minStealth
+var player
+var minVisibility
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	player = get_parent().player
 	if self.name == "FarSight":
-		minStealth = 50
+		minVisibility = 50
 	elif self.name == "NearSight":
-		minStealth = 100
+		minVisibility = 0
 
 
 #From using the _on_body_entered, which sends a signal to the node itself, detect if node is player
@@ -19,12 +20,14 @@ func _on_body_entered(body):
 	if body == player:
 		var rightVisible = MainGame.get_player_right_invisibility()
 		var leftVisible = MainGame.get_player_left_invisibility()
-
+		print("Player detected")
 		if body.get_global_position() < get_parent().get_global_position():
-			if rightVisible > minStealth:
+			if rightVisible > minVisibility:
 				MainGame.set_alarm_triggered(true)
 				get_parent().set_pursuit(true)
+				print("ALARM TRIGGERED")
 		else:
-			if leftVisible > minStealth:
+			if leftVisible > minVisibility:
 				MainGame.set_alarm_triggered(true)
 				get_parent().set_pursuit(true)
+				print("ALARM TRIGGERED")
