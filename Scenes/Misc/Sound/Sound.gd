@@ -15,6 +15,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
 	# Resizes the collider to be the correct size
 	$CollisionShape2D.scale = Vector2(sound_radius, sound_radius)
 
