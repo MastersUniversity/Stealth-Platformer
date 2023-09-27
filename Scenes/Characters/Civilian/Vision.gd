@@ -18,8 +18,8 @@ func _ready():
 func _on_body_entered(body):
 	print("Body detected")
 	if body == player:
-		var rightVisible = MainGame.get_player_right_invisibility()
-		var leftVisible = MainGame.get_player_left_invisibility()
+		var rightVisible = MainGame.get_player_right_visibility()
+		var leftVisible = MainGame.get_player_left_visibility()
 		print("Player detected")
 		if body.get_global_position() < get_parent().get_global_position():
 			if rightVisible > minVisibility:
