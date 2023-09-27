@@ -1,4 +1,4 @@
-extends Node2D
+extends Area2D
 
 
 # Called when the node enters the scene tree for the first time.
@@ -10,7 +10,7 @@ func _ready():
 func _process(delta):
 	pass
 
-func _on_sound_listener_heard_sound(area):
-	print(area.get_script() == Sound)
-	
-	print(area.get_global_location())
+
+
+func _on_body_entered(body):
+	pass # Replace with function body.

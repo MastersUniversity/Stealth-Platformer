@@ -1,11 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://2srb5bw2y5wm"]
+[gd_scene load_steps=9 format=3 uid="uid://2srb5bw2y5wm"]
 
 [ext_resource type="PackedScene" uid="uid://clmjvxbb85c33" path="res://Scenes/Characters/Player/player.tscn" id="1_3dkii"]
 [ext_resource type="Script" path="res://test_scene.gd" id="1_txx54"]
 [ext_resource type="PackedScene" uid="uid://b2qbyvgxy3vnw" path="res://Scenes/Misc/Sound Listener/sound_listener.tscn" id="2_g2tkq"]
+[ext_resource type="PackedScene" uid="uid://ir155kaf8mq3" path="res://Scenes/Items/Rock/rock.tscn" id="4_vfdr6"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yslq0"]
+friction = 0.5
+bounce = 0.25
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5xuwi"]
-size = Vector2(288, 20)
+size = Vector2(288, 16)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_x6fnu"]
+friction = 0.1
+rough = true
+bounce = 0.7
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a5sai"]
+size = Vector2(16, 112)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_txx54")
@@ -14,6 +27,9 @@ script = ExtResource("1_txx54")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(0, 40)
+collision_layer = 3
+collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_yslq0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_5xuwi")
@@ -27,5 +43,41 @@ color = Color(0, 1, 1, 1)
 
 [node name="SoundListener" parent="." instance=ExtResource("2_g2tkq")]
 position = Vector2(32, 0)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(176, 3)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+shape = SubResource("RectangleShape2D_5xuwi")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D2"]
+offset_left = -144.0
+offset_top = -8.0
+offset_right = 144.0
+offset_bottom = 8.0
+color = Color(0, 1, 1, 1)
+
+[node name="Rock" parent="." instance=ExtResource("4_vfdr6")]
+position = Vector2(8, -64)
+launch = Vector2(-100, -100)
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(-40, 0)
+collision_layer = 3
+collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_x6fnu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(0, -24)
+shape = SubResource("RectangleShape2D_a5sai")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D3"]
+offset_left = -8.0
+offset_top = -80.0
+offset_right = 8.0
+offset_bottom = 32.0
+color = Color(0, 1, 1, 1)
 
 [connection signal="heard_sound" from="SoundListener" to="." method="_on_sound_listener_heard_sound"]

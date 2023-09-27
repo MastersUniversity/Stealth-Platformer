@@ -1,4 +1,4 @@
-extends Node2D
+extends Area2D
 
 
 # Called when the node enters the scene tree for the first time.
@@ -10,7 +10,8 @@ func _ready():
 func _process(delta):
 	pass
 
-func _on_sound_listener_heard_sound(area):
-	print(area.get_script() == Sound)
+
+func interact(body):
+	get_tree().change_scene_to_file("res://LvL1.tscn")
 	
-	print(area.get_global_location())
+

@@ -1,0 +1,115 @@
+[gd_scene load_steps=10 format=3 uid="uid://cq1ojngrnd3pg"]
+
+[ext_resource type="PackedScene" uid="uid://ccdwfpgemyen2" path="res://Scenes/Interactibles/Door/door.tscn" id="1_g0uvs"]
+[ext_resource type="PackedScene" uid="uid://clmjvxbb85c33" path="res://Scenes/Characters/Player/player.tscn" id="2_laefl"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_s5qdx"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qwsiw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8cym7"]
+size = Vector2(1199, 67)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_kuw0c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ege7i"]
+size = Vector2(52, 649)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_p3duo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_72opj"]
+size = Vector2(573, 20)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Background" type="Area2D" parent="."]
+position = Vector2(580, 306)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
+visible = false
+position = Vector2(-4, 19)
+scale = Vector2(-1148, 647.5)
+texture = SubResource("PlaceholderTexture2D_s5qdx")
+
+[node name="Door" parent="." instance=ExtResource("1_g0uvs")]
+position = Vector2(26, 606)
+
+[node name="Door2" parent="." instance=ExtResource("1_g0uvs")]
+position = Vector2(1117, 338)
+
+[node name="Door3" parent="." instance=ExtResource("1_g0uvs")]
+position = Vector2(26, 147)
+
+[node name="Player" parent="." instance=ExtResource("2_laefl")]
+position = Vector2(459, 604)
+scale = Vector2(3, 3)
+
+[node name="Bottom Wall" type="StaticBody2D" parent="."]
+position = Vector2(457, 674)
+disable_mode = 1
+physics_material_override = SubResource("PhysicsMaterial_qwsiw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom Wall"]
+light_mask = 513
+visibility_layer = 513
+position = Vector2(144, 11)
+shape = SubResource("RectangleShape2D_8cym7")
+
+[node name="Sprite2D" type="Sprite2D" parent="Bottom Wall"]
+position = Vector2(143, 13)
+scale = Vector2(1198, 77)
+texture = SubResource("PlaceholderTexture2D_kuw0c")
+
+[node name="Left Wall" type="StaticBody2D" parent="."]
+position = Vector2(457, 674)
+disable_mode = 1
+physics_material_override = SubResource("PhysicsMaterial_qwsiw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Wall"]
+position = Vector2(-483, -344)
+shape = SubResource("RectangleShape2D_ege7i")
+
+[node name="Sprite2D" type="Sprite2D" parent="Left Wall"]
+position = Vector2(-483, -343)
+scale = Vector2(51, 647)
+texture = SubResource("PlaceholderTexture2D_p3duo")
+
+[node name="Right Wall" type="StaticBody2D" parent="."]
+position = Vector2(457, 674)
+disable_mode = 1
+physics_material_override = SubResource("PhysicsMaterial_qwsiw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Wall"]
+position = Vector2(721, -344)
+shape = SubResource("RectangleShape2D_ege7i")
+
+[node name="Sprite2D" type="Sprite2D" parent="Right Wall"]
+position = Vector2(722.75, -348.25)
+scale = Vector2(54.5, 653.5)
+texture = SubResource("PlaceholderTexture2D_p3duo")
+
+[node name="Top Wall" type="StaticBody2D" parent="."]
+position = Vector2(457, 674)
+disable_mode = 1
+physics_material_override = SubResource("PhysicsMaterial_qwsiw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top Wall"]
+position = Vector2(142, -711)
+shape = SubResource("RectangleShape2D_8cym7")
+
+[node name="Sprite2D" type="Sprite2D" parent="Top Wall"]
+position = Vector2(144, -714)
+scale = Vector2(1198, 77)
+texture = SubResource("PlaceholderTexture2D_kuw0c")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(288, 207)
+shape = SubResource("RectangleShape2D_72opj")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(865.5, 398)
+shape = SubResource("RectangleShape2D_72opj")
