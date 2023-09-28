@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://cet5cwla6t6vm"]
+
+[ext_resource type="Texture2D" uid="uid://dsme4s1tt6e7x" path="res://Scenes/Misc/Images/download.png" id="1_52n24"]
+[ext_resource type="Texture2D" uid="uid://hd7txxxohfjn" path="res://Scenes/Misc/Images/Black.png" id="2_wtgrg"]
+[ext_resource type="Texture2D" uid="uid://b1cixrxggjoyl" path="res://Scenes/Misc/Images/Try Again!.png" id="3_17atd"]
+[ext_resource type="Script" path="res://TryAgain.gd" id="4_s1827"]
+[ext_resource type="Texture2D" uid="uid://c237rsd5u7cqi" path="res://Scenes/Misc/Images/Exit.png" id="4_yavj0"]
+[ext_resource type="Script" path="res://Exit.gd" id="6_xp3tr"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Download" type="Sprite2D" parent="."]
+position = Vector2(944, 357)
+scale = Vector2(6.58667, 7.83184)
+texture = ExtResource("1_52n24")
+
+[node name="Black" type="Sprite2D" parent="."]
+position = Vector2(691, 1246.25)
+scale = Vector2(7.69733, 8.31967)
+texture = ExtResource("2_wtgrg")
+
+[node name="Try Again" type="Button" parent="."]
+offset_left = 306.0
+offset_top = 752.0
+offset_right = 879.0
+offset_bottom = 917.0
+icon = ExtResource("3_17atd")
+icon_alignment = 1
+script = ExtResource("4_s1827")
+
+[node name="Exit" type="Button" parent="."]
+offset_left = 1260.0
+offset_top = 783.0
+offset_right = 1494.0
+offset_bottom = 899.0
+icon = ExtResource("4_yavj0")
+script = ExtResource("6_xp3tr")
+
+[connection signal="pressed" from="Try Again" to="Try Again" method="_on_pressed"]
+[connection signal="pressed" from="Exit" to="Exit" method="_on_pressed"]
