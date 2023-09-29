@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://bhcf3f623gou1"]
 
+[ext_resource type="Script" path="res://LvL1.gd" id="1_gb24p"]
 [ext_resource type="PackedScene" uid="uid://clmjvxbb85c33" path="res://Scenes/Characters/Player/player.tscn" id="1_nks6f"]
 [ext_resource type="Texture2D" uid="uid://b87uprnp44kql" path="res://Assets/Sprites/Tile Sets/Level_1_art.png" id="2_aw0tl"]
 [ext_resource type="PackedScene" uid="uid://1nlrgjcqd8vd" path="res://Scenes/Characters/Civilian/civilian.tscn" id="3_omt1i"]
-[ext_resource type="Script" path="res://Button.gd" id="4_gcfcg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qublt"]
 texture = ExtResource("2_aw0tl")
@@ -290,6 +290,7 @@ physics_layer_0/collision_mask = 7
 sources/5 = SubResource("TileSetAtlasSource_qublt")
 
 [node name="LvL1" type="Node2D"]
+script = ExtResource("1_gb24p")
 
 [node name="Player" parent="." instance=ExtResource("1_nks6f")]
 position = Vector2(1319, 646)
@@ -329,13 +330,3 @@ position = Vector2(-1580, 619)
 
 [node name="Civilian10" parent="." instance=ExtResource("3_omt1i")]
 position = Vector2(-2720, 556)
-
-[node name="Button" type="Button" parent="."]
-offset_left = -3158.0
-offset_top = 488.0
-offset_right = -3059.0
-offset_bottom = 519.0
-text = "Click to Win"
-script = ExtResource("4_gcfcg")
-
-[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
