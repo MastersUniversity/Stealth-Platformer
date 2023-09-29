@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bhcf3f623gou1"]
+[gd_scene load_steps=7 format=3 uid="uid://bhcf3f623gou1"]
 
+[ext_resource type="Script" path="res://LvL1.gd" id="1_gb24p"]
 [ext_resource type="PackedScene" uid="uid://clmjvxbb85c33" path="res://Scenes/Characters/Player/player.tscn" id="1_nks6f"]
 [ext_resource type="Texture2D" uid="uid://b87uprnp44kql" path="res://Assets/Sprites/Tile Sets/Level_1_art.png" id="2_aw0tl"]
 [ext_resource type="PackedScene" uid="uid://1nlrgjcqd8vd" path="res://Scenes/Characters/Civilian/civilian.tscn" id="3_omt1i"]
@@ -289,6 +290,7 @@ physics_layer_0/collision_mask = 7
 sources/5 = SubResource("TileSetAtlasSource_qublt")
 
 [node name="LvL1" type="Node2D"]
+script = ExtResource("1_gb24p")
 
 [node name="Player" parent="." instance=ExtResource("1_nks6f")]
 position = Vector2(1319, 646)
@@ -314,9 +316,6 @@ position = Vector2(-92, 535)
 [node name="Civilian5" parent="." instance=ExtResource("3_omt1i")]
 position = Vector2(-2189, 598)
 
-[node name="Civilian3" parent="Civilian5" instance=ExtResource("3_omt1i")]
-position = Vector2(-531, -42)
-
 [node name="Civilian6" parent="." instance=ExtResource("3_omt1i")]
 position = Vector2(-996, 598)
 
@@ -328,3 +327,6 @@ position = Vector2(-260, 535)
 
 [node name="Civilian9" parent="." instance=ExtResource("3_omt1i")]
 position = Vector2(-1580, 619)
+
+[node name="Civilian10" parent="." instance=ExtResource("3_omt1i")]
+position = Vector2(-2720, 556)
