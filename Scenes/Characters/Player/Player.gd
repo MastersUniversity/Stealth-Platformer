@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 # Constants for player movement
 const SPEED = 100.0
@@ -75,6 +75,13 @@ func _physics_process(delta):
 			if len(interactables) == 1:
 				print("Yeah")
 				interactables[0].interact(self)
+				
+	if len(interactables) != 0:
+		if len(interactables) == 1:
+			$Label.show()
+			$Label.text = interactables[0].get_interact_text()
+	else:
+		$Label.hide()
 	
 	#Makes the player move around
 	move_and_slide()

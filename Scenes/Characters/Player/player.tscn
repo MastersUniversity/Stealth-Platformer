@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://clmjvxbb85c33"]
+[gd_scene load_steps=34 format=3 uid="uid://clmjvxbb85c33"]
 
 [ext_resource type="Script" path="res://Scenes/Characters/Player/Player.gd" id="1_875am"]
 [ext_resource type="Texture2D" uid="uid://b541242e51dv2" path="res://Assets/Sprites/Characters/Player/Player_Temp.png" id="1_u40yy"]
@@ -567,6 +567,11 @@ _data = {
 "Walk": SubResource("Animation_0cnjt")
 }
 
+[sub_resource type="SystemFont" id="SystemFont_fwe8i"]
+font_names = PackedStringArray("Copperplate")
+msdf_pixel_range = 8
+oversampling = 2.0
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_875am")
 
@@ -635,6 +640,19 @@ vframes = 4
 libraries = {
 "": SubResource("AnimationLibrary_28a1g")
 }
+
+[node name="Label" type="Label" parent="."]
+z_index = 1
+offset_left = -51.0
+offset_top = -31.0
+offset_right = 51.0
+offset_bottom = -19.0
+theme_override_colors/font_outline_color = Color(0, 0.419608, 1, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = SubResource("SystemFont_fwe8i")
+theme_override_font_sizes/font_size = 8
+text = "F - Interact"
+horizontal_alignment = 1
 
 [connection signal="area_entered" from="GameOverArea" to="." method="_on_game_over_area_area_entered"]
 [connection signal="area_exited" from="GameOverArea" to="." method="_on_game_over_area_area_exited"]
