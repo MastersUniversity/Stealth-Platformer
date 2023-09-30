@@ -3,14 +3,6 @@ extends Node
 # A signal that is sent when a sound is first heard
 signal heard_sound
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	print(get_node("Civilian"))
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 # Called when the listener 
 func _on_area_2d_area_entered(area):
 	
