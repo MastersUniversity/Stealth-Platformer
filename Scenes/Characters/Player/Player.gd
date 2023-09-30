@@ -16,6 +16,8 @@ var throwing = false
 var crouching = false
 var jumping = false
 
+var interactables = []
+
 @onready var leg_animations = $LegAnimationPlayer
 @onready var torso_animations = $TorsoAnimationPlayer
 
@@ -67,6 +69,12 @@ func _physics_process(delta):
 		throwing = false
 		
 	handle_animations()
+	
+	if Input.is_action_just_pressed("Interact"):
+		if len(interactables) != 0:
+			if len(interactables) == 1:
+				print("Yeah")
+				interactables[0].interact(self)
 	
 	#Makes the player move around
 	move_and_slide()
@@ -134,3 +142,19 @@ func handle_animations():
 			leg_animations.play("Idle")
 			if not throwing:
 				torso_animations.play("Idle")
+
+
+
+func _on_game_over_area_body_entered(body):
+	if body.is_in_group("Enemies"):
+		get_tree().change_scene_to_file("res://Scenes/UI/GameOver.tscn")
+
+
+func _on_game_over_area_area_entered(area):
+	if area.get_script() == Interactor:
+		interactables.append(area)
+
+
+func _on_game_over_area_area_exited(area):
+	if area.get_script() == Interactor:
+		interactables.remove_at(interactables.find(area))

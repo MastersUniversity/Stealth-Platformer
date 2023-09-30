@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cq1ojngrnd3pg"]
+[gd_scene load_steps=9 format=3 uid="uid://cq1ojngrnd3pg"]
 
-[ext_resource type="PackedScene" uid="uid://ccdwfpgemyen2" path="res://door.tscn" id="1_g0uvs"]
+[ext_resource type="PackedScene" uid="uid://ccdwfpgemyen2" path="res://Scenes/Interactibles/Door/door.tscn" id="1_g0uvs"]
+[ext_resource type="PackedScene" uid="uid://clmjvxbb85c33" path="res://Scenes/Characters/Player/player.tscn" id="1_r004d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ege7i"]
 size = Vector2(52, 649)
@@ -18,6 +19,9 @@ size = Vector2(1199, 67)
 size = Vector2(573, 20)
 
 [node name="Node2D" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_r004d")]
+position = Vector2(104, 256)
 
 [node name="Left Wall" type="Area2D" parent="."]
 

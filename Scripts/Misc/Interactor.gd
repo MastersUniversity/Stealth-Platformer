@@ -1,6 +1,8 @@
-extends Area2D
+class_name Interactor extends Area2D
 
-@export var destination = "res://Scenes/Levels/LvL1.tscn"
+
+signal interacted(body: Node2D)
+signal disengaged(body: Node2D)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,5 +14,9 @@ func _process(delta):
 	pass
 
 
-func _on_interactor_interacted(body):
-	get_tree().change_scene_to_file(destination)
+func interact(body):
+	interacted.emit(body)
+
+
+func disengage(body):
+	disengaged.emit(body)

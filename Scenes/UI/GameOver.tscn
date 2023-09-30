@@ -1,16 +1,16 @@
 [gd_scene load_steps=5 format=3 uid="uid://bj7vrrtv80e5e"]
 
-[ext_resource type="Texture2D" uid="uid://dy6oqxfyl5yhk" path="res://Scenes/Misc/Images/download.png" id="1_uwbdy"]
-[ext_resource type="Texture2D" uid="uid://bug06uo3qtnhs" path="res://Scenes/Misc/Images/images.png" id="2_2conq"]
-[ext_resource type="Script" path="res://Button.gd" id="3_j05nx"]
-[ext_resource type="Texture2D" uid="uid://cvl55o1d7yt1c" path="res://Scenes/Misc/Images/Screenshot 2023-09-27 184528.png" id="4_0ot8r"]
+[ext_resource type="Texture2D" uid="uid://c3i3um6prdjyx" path="res://Scenes/Misc/Images/download.png" id="1_v8x7y"]
+[ext_resource type="Texture2D" uid="uid://b4umaeturwj56" path="res://Scenes/Misc/Images/images.png" id="2_4adaj"]
+[ext_resource type="Script" path="res://Button.gd" id="3_ldvn3"]
+[ext_resource type="Texture2D" uid="uid://cvl55o1d7yt1c" path="res://Scenes/Misc/Images/Screenshot 2023-09-27 184528.png" id="4_l4lee"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Game Over" type="Sprite2D" parent="."]
 position = Vector2(963, 439)
 scale = Vector2(6.41, 6.33036)
-texture = ExtResource("1_uwbdy")
+texture = ExtResource("1_v8x7y")
 
 [node name="Button" type="Button" parent="."]
 offset_left = 728.0
@@ -18,14 +18,14 @@ offset_top = 814.0
 offset_right = 1184.0
 offset_bottom = 935.0
 toggle_mode = true
-icon = ExtResource("2_2conq")
+icon = ExtResource("2_4adaj")
 icon_alignment = 1
 expand_icon = true
-script = ExtResource("3_j05nx")
+script = ExtResource("3_ldvn3")
 
 [node name="Black" type="Sprite2D" parent="."]
 position = Vector2(958.375, 1027.25)
 scale = Vector2(6.20338, 1.49342)
-texture = ExtResource("4_0ot8r")
+texture = ExtResource("4_l4lee")
 
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://clmjvxbb85c33"]
+[gd_scene load_steps=33 format=3 uid="uid://clmjvxbb85c33"]
 
 [ext_resource type="Script" path="res://Scenes/Characters/Player/Player.gd" id="1_875am"]
 [ext_resource type="Texture2D" uid="uid://b541242e51dv2" path="res://Assets/Sprites/Characters/Player/Player_Temp.png" id="1_u40yy"]
@@ -7,10 +7,14 @@
 [ext_resource type="Texture2D" uid="uid://bbhoefvitsifq" path="res://Assets/Sprites/Characters/Player/Player_Legs.png" id="5_tti68"]
 [ext_resource type="Texture2D" uid="uid://btuta4hpkm0q3" path="res://Assets/Sprites/Characters/Player/Player_Torso.png" id="6_gd4ue"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7naqy"]
+size = Vector2(14, 41)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wpwwp"]
-size = Vector2(20, 40)
+size = Vector2(12, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6gkv7"]
+size = Vector2(12, 20)
 
 [sub_resource type="Animation" id="Animation_5pisw"]
 resource_name = "Idle"
@@ -571,6 +575,12 @@ visible = false
 texture_filter = 1
 texture = ExtResource("1_u40yy")
 
+[node name="GameOverArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameOverArea"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_7naqy")
+
 [node name="WalkingColider" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_wpwwp")
@@ -584,13 +594,10 @@ position = Vector2(0, 21)
 sound_radius = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -48)
 zoom = Vector2(4, 4)
-position_smoothing_speed = 10.0
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
-drag_left_margin = 0.7
-drag_top_margin = 0.7
-drag_bottom_margin = 0.7
+position_smoothing_enabled = true
+position_smoothing_speed = 1.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
@@ -628,3 +635,7 @@ vframes = 4
 libraries = {
 "": SubResource("AnimationLibrary_28a1g")
 }
+
+[connection signal="area_entered" from="GameOverArea" to="." method="_on_game_over_area_area_entered"]
+[connection signal="area_exited" from="GameOverArea" to="." method="_on_game_over_area_area_exited"]
+[connection signal="body_entered" from="GameOverArea" to="." method="_on_game_over_area_body_entered"]

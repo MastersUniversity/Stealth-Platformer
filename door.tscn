@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://d0nrp6htekvm7"]
+[gd_scene load_steps=6 format=3 uid="uid://d0nrp6htekvm7"]
 
 [ext_resource type="Script" path="res://Door.gd" id="1_2eblq"]
 [ext_resource type="Texture2D" uid="uid://b541242e51dv2" path="res://Assets/Sprites/Characters/Player/Player_Temp.png" id="2_mlymf"]
+[ext_resource type="Script" path="res://Scripts/Misc/Interactor.gd" id="3_xujus"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wx4an"]
 size = Vector2(61.5, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u7opu"]
+size = Vector2(61, 100)
 
 [node name="Door" type="Area2D"]
 position = Vector2(25, 598)
@@ -18,3 +22,14 @@ texture = ExtResource("2_mlymf")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(5.25, -1)
 shape = SubResource("RectangleShape2D_wx4an")
+
+[node name="Interactor" type="Area2D" parent="."]
+collision_layer = 15
+collision_mask = 15
+script = ExtResource("3_xujus")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactor"]
+position = Vector2(5.5, -1)
+shape = SubResource("RectangleShape2D_u7opu")
+
+[connection signal="interacted" from="Interactor" to="." method="_on_interactor_interacted"]
