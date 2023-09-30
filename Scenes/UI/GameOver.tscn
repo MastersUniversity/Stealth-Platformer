@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c3i3um6prdjyx" path="res://Scenes/Misc/Images/download.png" id="1_v8x7y"]
 [ext_resource type="Texture2D" uid="uid://b4umaeturwj56" path="res://Scenes/Misc/Images/images.png" id="2_4adaj"]
-[ext_resource type="Script" path="res://Button.gd" id="3_ldvn3"]
+[ext_resource type="Script" path="res://Scenes/UI/Button.gd" id="3_oddqn"]
 [ext_resource type="Texture2D" uid="uid://cvl55o1d7yt1c" path="res://Scenes/Misc/Images/Screenshot 2023-09-27 184528.png" id="4_l4lee"]
 
 [node name="Node2D" type="Node2D"]
@@ -21,7 +21,7 @@ toggle_mode = true
 icon = ExtResource("2_4adaj")
 icon_alignment = 1
 expand_icon = true
-script = ExtResource("3_ldvn3")
+script = ExtResource("3_oddqn")
 
 [node name="Black" type="Sprite2D" parent="."]
 position = Vector2(958.375, 1027.25)
