@@ -12,27 +12,23 @@ const JUMP_VELOCITY = -300.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var current_speed = SPEED
 var current_sound = 0
-var throwing = false
-var crouching = false
-var jumping = false
 
 var interactables = []
 
-@onready var leg_animations = $LegAnimationPlayer
 @onready var torso_animations = $TorsoAnimationPlayer
+
+func _ready():
+	$LegAnimationTree.active = true
 
 func _physics_process(delta):
 	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
-		jumping = true
 
 	# Handle Jump.
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
-		leg_animations.play("Jump")
 		torso_animations.play("Jump")
-		await get_tree().create_timer(0.05).timeout
 		velocity.y = JUMP_VELOCITY
 	
 	# Handle whether or not the player is crouching
@@ -58,7 +54,7 @@ func _physics_process(delta):
 		var magnitude = sqrt(mouse_location.x**2 + mouse_location.y**2)
 		var clamped_x = mouse_location.x/magnitude * min(magnitude, 60)
 		var clamped_y = mouse_location.y/magnitude * min(magnitude, 60)
-		throwing = true
+		$TorsoAnimationTree.set("parameters/Throwing/transition_request", "throw")
 		torso_animations.play("Throw")
 		await get_tree().create_timer(0.2).timeout
 		var rock = preload("res://Scenes/Items/Rock/rock.tscn").instantiate()
@@ -66,8 +62,9 @@ func _physics_process(delta):
 		rock.launch = Vector2(clamped_x*7 + velocity.x, clamped_y*7 + velocity.y)
 		self.get_parent().add_child(rock)
 		await get_tree().create_timer(0.1).timeout
-		throwing = false
-		
+		$TorsoAnimationTree.set("parameters/Throwing/transition_request", "no")
+	
+	
 	handle_animations()
 	
 	if Input.is_action_just_pressed("Interact"):
@@ -88,19 +85,25 @@ func _physics_process(delta):
 
 
 func crouch():
-	crouching = true
+	$LegAnimationTree.set("parameters/IHeight/transition_request", "crouch")
+	$LegAnimationTree.set("parameters/WHeight/transition_request", "sneak")
+	$TorsoAnimationTree.set("parameters/IHeight/transition_request", "crouch")
+	$TorsoAnimationTree.set("parameters/WHeight/transition_request", "sneak")
 	current_speed = CROUCH_SPEED
 	current_sound = CROUCH_SOUND
-	$Sprite2D.scale.y = 0.5
+	#$Sprite2D.scale.y = 0.5
 	$WalkingColider.disabled = true
 	$CrouchingCollider.disabled = false
 
 
 func stand_up():
-	crouching = false
+	$LegAnimationTree.set("parameters/IHeight/transition_request", "idle")
+	$LegAnimationTree.set("parameters/WHeight/transition_request", "walk")
+	$TorsoAnimationTree.set("parameters/IHeight/transition_request", "idle")
+	$TorsoAnimationTree.set("parameters/WHeight/transition_request", "walk")
 	current_speed = SPEED
 	current_sound = WALK_SOUND
-	$Sprite2D.scale.y = 1
+	#$Sprite2D.scale.y = 1
 	$WalkingColider.disabled = false
 	$CrouchingCollider.disabled = true
 
@@ -124,31 +127,29 @@ func walk(direction):
 
 func handle_animations():
 	if not is_on_floor():
-		if velocity.y > 0:
-			leg_animations.play("Fall")
-			if not throwing:
-				torso_animations.play("Fall")
-	elif jumping:
-		leg_animations.play("Land")
-		torso_animations.play("Land")
-		jumping = false
-		await get_tree().create_timer(0.3).timeout
-	elif int(velocity.x) != 0:
-		if crouching:
-			leg_animations.play("Sneak")
-			torso_animations.play("Sneak")
+		$LegAnimationTree.set("parameters/InAir/transition_request", "air")
+		$TorsoAnimationTree.set("parameters/InAir/transition_request", "air")
+		if velocity.y < 0:
+			$LegAnimationTree.set("parameters/YDirection/transition_request", "jump")
+			$TorsoAnimationTree.set("parameters/YDirection/transition_request", "jump")
 		else:
-			leg_animations.play("Walk")
-			if not throwing:
-				torso_animations.play("Walk")
+			$LegAnimationTree.set("parameters/YDirection/transition_request", "fall")
+			$TorsoAnimationTree.set("parameters/YDirection/transition_request", "fall")
+	elif $LegAnimationTree.get("parameters/InAir/current_state") == "air":
+		$LegAnimationTree.set("parameters/InAir/transition_request", "ground")
+		$LegAnimationTree.set("parameters/Landing/transition_request", "land")
+		$TorsoAnimationTree.set("parameters/InAir/transition_request", "ground")
+		$TorsoAnimationTree.set("parameters/Landing/transition_request", "land")
+		await get_tree().create_timer(0.1).timeout
+		$LegAnimationTree.set("parameters/Landing/transition_request", "grounded")
+		$TorsoAnimationTree.set("parameters/Landing/transition_request", "grounded")
 	else:
-		if crouching:
-			leg_animations.play("Crouch")
-			torso_animations.play("Crouch")
+		if int(velocity.x) != 0:
+			$LegAnimationTree.set("parameters/Movement/transition_request", "move")
+			$TorsoAnimationTree.set("parameters/Movement/transition_request", "move")
 		else:
-			leg_animations.play("Idle")
-			if not throwing:
-				torso_animations.play("Idle")
+			$LegAnimationTree.set("parameters/Movement/transition_request", "still")
+			$TorsoAnimationTree.set("parameters/Movement/transition_request", "still")
 
 
 
