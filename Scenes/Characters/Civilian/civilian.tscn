@@ -6,20 +6,21 @@
 [ext_resource type="Script" path="res://Scenes/Characters/Civilian/Vision.gd" id="3_xs1v7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mulqo"]
-size = Vector2(12, 37)
+size = Vector2(12.5, 38)
 
 [node name="Civilian" type="CharacterBody2D"]
 script = ExtResource("1_fb1r2")
 
+[node name="PlayerCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(1.74323, 3.00394)
+rotation = 0.00225368
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_mulqo")
+
 [node name="PlayerTemp" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0, 1)
 texture = ExtResource("2_wjp13")
 flip_h = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 5.5)
-shape = SubResource("RectangleShape2D_mulqo")
 
 [node name="FarSight" type="Area2D" parent="."]
 script = ExtResource("3_xs1v7")
@@ -42,6 +43,20 @@ position = Vector2(5, -8)
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 debug_enabled = true
 
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(4.76837e-07, 4.76837e-07)
+rotation = 0.00225368
+gravity_space_override = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1.99999, 3)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_mulqo")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+
 [connection signal="body_entered" from="FarSight" to="FarSight" method="_on_body_entered"]
 [connection signal="body_entered" from="NearSight" to="NearSight" method="_on_body_entered"]
 [connection signal="heard_sound" from="Ear" to="." method="_on_sound_listener_heard_sound"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
