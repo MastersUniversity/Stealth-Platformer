@@ -23,21 +23,21 @@ func change_collisions(body, old, new):
 
 func _on_interactor_right_interacted(body):
 	change_collisions(body, 1, 3)
-	MainGame.set_player_visibility(0, 1)
+	MainGame.set_player_visibility(0, 100)
 	body.global_position.x = $InteractorRight.global_position.x
 
 
 func _on_interactor_right_disengaged(body):
 	change_collisions(body, 3, 1)
-	MainGame.set_player_visibility(1, 1)
+	MainGame.set_player_visibility(100, 100)
 
 
 func _on_interactor_left_interacted(body):
 	change_collisions(body, 1, 3)
-	MainGame.set_player_visibility(1, 0)
+	MainGame.set_player_visibility(100, 0)
 	body.global_position.x = $InteractorLeft.global_position.x
 
 
 func _on_interactor_left_disengaged(body):
 	change_collisions(body, 3, 1)
-	MainGame.set_player_visibility(1, 1)
+	MainGame.set_player_visibility(100, 100)

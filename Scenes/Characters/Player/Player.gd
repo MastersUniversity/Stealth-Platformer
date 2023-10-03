@@ -86,9 +86,9 @@ func _physics_process(delta):
 		$Label.hide()
 	
 	if stealth_objects > 0:
-		MainGame.set_player_visibility(0.5, 0.5)
-	elif MainGame.get_player_visibility() == [0.5,0.5]:
-		MainGame.set_player_visibility(1,1)
+		MainGame.set_player_visibility(50, 50)
+	elif MainGame.get_player_visibility() == [50, 50]:
+		MainGame.set_player_visibility(100,100)
 	
 	#Makes the player move around
 	move_and_slide()

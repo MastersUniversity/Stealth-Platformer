@@ -1,6 +1,5 @@
 extends Area2D
 
-@export var new_stealth = [0.5,0.5]
 var old_visibility
 
 # Called when the node enters the scene tree for the first time.
