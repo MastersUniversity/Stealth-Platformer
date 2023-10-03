@@ -23,6 +23,12 @@ func _ready():
 
 func _physics_process(delta):
 	
+	if Input.is_action_just_pressed("ui_cancel"):
+		if $Camera2D/Button.hidden:
+			$Camera2D/Button.show()
+		else:
+			$Camera2D/Button.hide()
+	
 	if $GameOverArea.collision_layer != collision_layer:
 		$GameOverArea.collision_layer = collision_layer
 		$GameOverArea.collision_mask = collision_mask
@@ -34,6 +40,7 @@ func _physics_process(delta):
 	# Handle Jump.
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		torso_animations.play("Jump")
+		$Camera2D/Button.hide()
 		velocity.y = JUMP_VELOCITY
 	
 	# Handle whether or not the player is crouching
@@ -138,6 +145,7 @@ func stand_up():
 func walk(direction):
 	if direction:
 		disengage()
+		$Camera2D/Button.hide()
 		if direction < 0:
 			$PlayerLegs.flip_h = true
 			$PlayerTorso.flip_h = true

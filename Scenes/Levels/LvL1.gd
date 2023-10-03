@@ -11,6 +11,8 @@ func _process(delta):
 	if MainGame.is_alarm_triggered():
 		$Player/LevelAudioPlayer.stream_paused = true
 		$Player/AlarmAudioPlayer.stream_paused = false
+		$Player/ColorRect.show()
 	else:
 		$Player/LevelAudioPlayer.stream_paused = false
 		$Player/AlarmAudioPlayer.stream_paused = true
+		$Player/ColorRect.hide()

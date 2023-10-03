@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://clmjvxbb85c33"]
+[gd_scene load_steps=51 format=3 uid="uid://clmjvxbb85c33"]
 
 [ext_resource type="Script" path="res://Scenes/Characters/Player/Player.gd" id="1_875am"]
 [ext_resource type="Texture2D" uid="uid://b541242e51dv2" path="res://Assets/Sprites/Characters/Player/Player_Temp.png" id="1_u40yy"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bcm4q8v68f8sm" path="res://Assets/Sprites/Characters/Player/Player.png" id="4_qv0yp"]
 [ext_resource type="Texture2D" uid="uid://bbhoefvitsifq" path="res://Assets/Sprites/Characters/Player/Player_Legs.png" id="5_tti68"]
 [ext_resource type="Texture2D" uid="uid://btuta4hpkm0q3" path="res://Assets/Sprites/Characters/Player/Player_Torso.png" id="6_gd4ue"]
+[ext_resource type="Script" path="res://Exit.gd" id="7_bu78u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7naqy"]
 size = Vector2(13, 41)
@@ -731,6 +732,18 @@ zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 position_smoothing_speed = 1.0
 
+[node name="Button" type="Button" parent="Camera2D"]
+visible = false
+z_index = 1
+offset_left = -52.0
+offset_top = -25.0
+offset_right = 51.0
+offset_bottom = 9.0
+theme_override_colors/font_outline_color = Color(0, 0.419608, 1, 1)
+theme_override_constants/outline_size = 2
+text = "EXIT GAME"
+script = ExtResource("7_bu78u")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
 texture_filter = 1
@@ -839,3 +852,4 @@ current = true
 [connection signal="area_entered" from="GameOverArea" to="." method="_on_game_over_area_area_entered"]
 [connection signal="area_exited" from="GameOverArea" to="." method="_on_game_over_area_area_exited"]
 [connection signal="body_entered" from="GameOverArea" to="." method="_on_game_over_area_body_entered"]
+[connection signal="pressed" from="Camera2D/Button" to="Camera2D/Button" method="_on_pressed"]
