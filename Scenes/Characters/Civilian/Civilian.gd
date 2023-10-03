@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 
 var SPEED = 125
-const JUMP_VELOCITY = -400.0
+const JUMP_VELOCITY = -200.0
 var acceleration = 10
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -45,10 +45,12 @@ func alarm_reaction(alarm):
 		else:
 			$Timer.paused = false
 	else:
-		nav_target = spawn_point
-		set_navigation_target(nav_target)
-		$Timer.paused = true
-		pursuing = false
+		if pursuing:
+			pursuing = false
+			await get_tree().create_timer(5).timeout
+			nav_target = spawn_point
+			set_navigation_target(nav_target)
+			$Timer.paused = true
 	
 func _physics_process(delta):
 	#Listening for alarm if it has been triggered by another enemy
@@ -61,16 +63,21 @@ func _physics_process(delta):
 	new_velocity = new_velocity.normalized()
 	new_velocity *= SPEED
 	
-	#velocity = velocity.lerp(new_velocity, acceleration * delta)
-	if (velocity == new_velocity) and (animation_player.current_animation == "Walking"):
-		animation_player.play("Idle")
-	else:
-		velocity = new_velocity
+	# velocity = velocity.lerp(new_velocity, acceleration * delta)
+	if not (velocity == new_velocity):
+		velocity.x = new_velocity.x
+	
+	if int(velocity.x):
 		animation_player.play("Walking")
+		if is_on_wall() and is_on_floor():
+			velocity.y = JUMP_VELOCITY
+	else:
+		animation_player.play("Idle")
 	
 	#Applying gravity as last step
 	if not is_on_floor():
-		velocity.y += gravity * (10*delta)
+		velocity.y += gravity * (delta)
+		
 	
 	move_and_slide()
 

@@ -86,7 +86,6 @@ position = Vector2(5, -8)
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 10.0
 path_max_distance = 180.0
-debug_enabled = true
 
 [node name="Timer" type="Timer" parent="."]
 process_callback = 0
