@@ -16,6 +16,11 @@ resource_name = "Behaviors"
 scenes/1/scene = ExtResource("3_hlyl0")
 scenes/2/scene = ExtResource("5_f1rc8")
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_u4eaq"]
+vertices = PackedVector2Array(-10.5, -10.5, -3.44715, -10.5, -10.5, -4.77297)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-10.5, -10.5, -3.44715, -10.5, -10.5, -4.77297)])
+
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_wwdvd"]
 vertices = PackedVector2Array(-10.5, -10.5, 10.5, -10.5, 10.5, 10.5, -10.5, 10.5)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
@@ -35,6 +40,11 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-10.5, -10.5, 10.5, -10
 vertices = PackedVector2Array(-10.5, -10.5, 10.5, -10.5, 10.5, 10.5, -10.5, 10.5)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-10.5, -10.5, 10.5, -10.5, 10.5, 10.5, -10.5, 10.5)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_hapf0"]
+vertices = PackedVector2Array(10.5, -10.5, 10.5, -5.83363, 3.62392, -10.5)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(3.62392, -10.5, 10.5, -5.83363, 10.5, -10.5)])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_yxqoq"]
 vertices = PackedVector2Array(-10.5, -10.5, 10.5, -10.5, 10.5, 10.5, -10.5, 10.5)
@@ -78,6 +88,7 @@ texture_region_size = Vector2i(21, 21)
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8.04334, -8.83884, -3.09359, -10.5, 10.5, -10.5, 10.5, 10.5, -10.5, 10.5, -10.5, -5.65685)
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_u4eaq")
 1:0/0 = 0
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
@@ -86,6 +97,7 @@ texture_region_size = Vector2i(21, 21)
 2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:0/0/physics_layer_0/angular_velocity = 0.0
 2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10.5, -10.5, 2.5, -10.5, 7, -8.5, 8.47493, -7.23577, 10.5, -5.5, 10.5, 10.5, -10.5, 10.5)
+2:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_hapf0")
 3:0/0 = 0
 3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:0/0/physics_layer_0/angular_velocity = 0.0

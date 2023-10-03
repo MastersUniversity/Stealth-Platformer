@@ -1,25 +1,69 @@
-[gd_scene load_steps=6 format=3 uid="uid://1nlrgjcqd8vd"]
+[gd_scene load_steps=9 format=3 uid="uid://1nlrgjcqd8vd"]
 
 [ext_resource type="Script" path="res://Scenes/Characters/Civilian/Civilian.gd" id="1_fb1r2"]
-[ext_resource type="Texture2D" uid="uid://bygdc1gpfdxgw" path="res://Assets/Sprites/Characters/Civilian/game_character.png" id="2_wjp13"]
+[ext_resource type="Texture2D" uid="uid://cqay0360uhxre" path="res://Assets/Sprites/Characters/Civilian/Civilian.png" id="2_o8ovf"]
 [ext_resource type="PackedScene" uid="uid://b2qbyvgxy3vnw" path="res://Scenes/Misc/Sound Listener/sound_listener.tscn" id="3_hxvqy"]
 [ext_resource type="Script" path="res://Scenes/Characters/Civilian/Vision.gd" id="3_xs1v7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mulqo"]
-size = Vector2(12.5, 38)
+size = Vector2(17, 34.9932)
+
+[sub_resource type="Animation" id="Animation_55qtj"]
+resource_name = "Idle"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [8, 9, 0]
+}
+
+[sub_resource type="Animation" id="Animation_wgwfn"]
+resource_name = "Walking"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ipd6b"]
+_data = {
+"Idle": SubResource("Animation_55qtj"),
+"Walking": SubResource("Animation_wgwfn")
+}
 
 [node name="Civilian" type="CharacterBody2D"]
 script = ExtResource("1_fb1r2")
 
 [node name="PlayerCollisionShape" type="CollisionShape2D" parent="."]
-position = Vector2(1.74323, 3.00394)
+position = Vector2(1.50113, 1.49999)
 rotation = 0.00225368
 shape = SubResource("RectangleShape2D_mulqo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_wjp13")
+scale = Vector2(1, 0.880952)
+texture = ExtResource("2_o8ovf")
 flip_h = true
+hframes = 8
+vframes = 2
+frame = 8
 
 [node name="FarSight" type="Area2D" parent="."]
 script = ExtResource("3_xs1v7")
@@ -40,21 +84,23 @@ polygon = PackedVector2Array(0, -10, -128, -88, -128, 80)
 position = Vector2(5, -8)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 10.0
+path_max_distance = 180.0
 debug_enabled = true
 
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2(4.76837e-07, 4.76837e-07)
-rotation = 0.00225368
-gravity_space_override = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(1.99999, 3)
-shape = SubResource("RectangleShape2D_mulqo")
-
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.3
+process_callback = 0
+wait_time = 0.1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+reset_on_save = false
+libraries = {
+"": SubResource("AnimationLibrary_ipd6b")
+}
 
 [connection signal="body_entered" from="FarSight" to="FarSight" method="_on_body_entered"]
+[connection signal="body_exited" from="FarSight" to="FarSight" method="_on_body_exited"]
 [connection signal="body_entered" from="NearSight" to="NearSight" method="_on_body_entered"]
+[connection signal="body_exited" from="NearSight" to="NearSight" method="_on_body_exited"]
 [connection signal="heard_sound" from="Ear" to="." method="_on_sound_listener_heard_sound"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

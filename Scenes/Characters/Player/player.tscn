@@ -582,6 +582,7 @@ _data = {
 
 [sub_resource type="SystemFont" id="SystemFont_fwe8i"]
 font_names = PackedStringArray("Copperplate")
+subpixel_positioning = 0
 msdf_pixel_range = 8
 oversampling = 2.0
 
