@@ -16,7 +16,7 @@ position = Vector2(1.74323, 3.00394)
 rotation = 0.00225368
 shape = SubResource("RectangleShape2D_mulqo")
 
-[node name="PlayerTemp" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("2_wjp13")
 flip_h = true
@@ -52,7 +52,7 @@ position = Vector2(1.99999, 3)
 shape = SubResource("RectangleShape2D_mulqo")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.3
 
 [connection signal="body_entered" from="FarSight" to="FarSight" method="_on_body_entered"]
 [connection signal="body_entered" from="NearSight" to="NearSight" method="_on_body_entered"]

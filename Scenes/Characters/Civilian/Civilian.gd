@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-var SPEED = 100
+var SPEED = 125
 const JUMP_VELOCITY = -400.0
 var acceleration = 5
 
@@ -40,13 +40,25 @@ func _physics_process(delta):
 	new_velocity = new_velocity.normalized()
 	new_velocity *= SPEED
 	
-	velocity = velocity.lerp(new_velocity, acceleration * delta)
+	#velocity = velocity.lerp(new_velocity, acceleration * delta)
+	velocity = new_velocity
 	
 	#Applying gravity as last step
-	if not is_on_floor():
+	"""if not is_on_floor():
 		velocity.y += gravity * delta
+		"""
 	move_and_slide()
 
+	
+
+	#create two raycasts --> one pointing downward and one pointing toward civilian facing
+	#if patrol: if frontward raycast detects object in front of it OR downward raycast STOPS detecting object, turn around and go the other way
+	#if pursuit: 
+
+
+
+
+	#turn on collision layer and collision mask level 3 when alarm is triggered (BACKBURNER)
 
 func set_pursuit(state):
 	pursuing = state
