@@ -13,6 +13,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var current_speed = SPEED
 var current_sound = 0
 
+var stealth_objects = 0
 var interactables = []
 
 @onready var torso_animations = $TorsoAnimationPlayer
@@ -21,6 +22,10 @@ func _ready():
 	$LegAnimationTree.active = true
 
 func _physics_process(delta):
+	
+	if $GameOverArea.collision_layer != collision_layer:
+		$GameOverArea.collision_layer = collision_layer
+		$GameOverArea.collision_mask = collision_mask
 	
 	# Add the gravity.
 	if not is_on_floor():
@@ -64,25 +69,47 @@ func _physics_process(delta):
 		await get_tree().create_timer(0.1).timeout
 		$TorsoAnimationTree.set("parameters/Throwing/transition_request", "no")
 	
-	
+
 	handle_animations()
 	
 	if Input.is_action_just_pressed("Interact"):
-		if len(interactables) != 0:
-			if len(interactables) == 1:
-				print("Yeah")
-				interactables[0].interact(self)
+		interact()
 				
 	if len(interactables) != 0:
-		if len(interactables) == 1:
-			$Label.show()
-			$Label.text = interactables[0].get_interact_text()
+		$Label.show()
+		var nearest = get_nearest_interactable()
+		if nearest.get_interacting():
+			$Label.text = nearest.get_disengage_text()
+		else:
+			$Label.text = nearest.get_interact_text()
 	else:
 		$Label.hide()
+	
+	if stealth_objects > 0:
+		MainGame.set_player_visibility(0.5, 0.5)
+	elif MainGame.get_player_visibility() == [0.5,0.5]:
+		MainGame.set_player_visibility(1,1)
 	
 	#Makes the player move around
 	move_and_slide()
 
+
+func get_nearest_interactable():
+	var nearest = interactables[0]
+	for i in interactables:
+		if abs(nearest.global_position.x - global_position.x) > abs(i.global_position.x - global_position.x):
+			nearest = i
+	return nearest
+
+func interact():
+	if len(interactables) != 0:
+		get_nearest_interactable().interact(self)
+	
+
+func disengage():
+	if len(interactables) != 0:
+		get_nearest_interactable().disengage(self)
+	
 
 func crouch():
 	$LegAnimationTree.set("parameters/IHeight/transition_request", "crouch")
@@ -106,9 +133,11 @@ func stand_up():
 	#$Sprite2D.scale.y = 1
 	$WalkingColider.disabled = false
 	$CrouchingCollider.disabled = true
+	
 
 func walk(direction):
 	if direction:
+		disengage()
 		if direction < 0:
 			$PlayerLegs.flip_h = true
 			$PlayerTorso.flip_h = true

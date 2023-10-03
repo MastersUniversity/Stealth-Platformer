@@ -8,13 +8,13 @@
 [ext_resource type="Texture2D" uid="uid://btuta4hpkm0q3" path="res://Assets/Sprites/Characters/Player/Player_Torso.png" id="6_gd4ue"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7naqy"]
-size = Vector2(14, 41)
+size = Vector2(13, 41)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wpwwp"]
-size = Vector2(12, 40)
+size = Vector2(11, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6gkv7"]
-size = Vector2(12, 20)
+size = Vector2(11, 20)
 
 [sub_resource type="Animation" id="Animation_5pisw"]
 resource_name = "Idle"
@@ -697,7 +697,7 @@ nodes/Walk/position = Vector2(-360, 220)
 nodes/YDirection/node = SubResource("AnimationNodeTransition_rn4vd")
 nodes/YDirection/position = Vector2(130, 240)
 nodes/output/position = Vector2(640, 10)
-node_connections = [&"output", 0, &"Throwing", &"IHeight", 0, &"Idle", &"IHeight", 1, &"Crouch", &"InAir", 0, &"Landing", &"InAir", 1, &"YDirection", &"Landing", 0, &"Land", &"Landing", 1, &"Movement", &"Movement", 0, &"IHeight", &"Movement", 1, &"WHeight", &"WHeight", 0, &"Walk", &"WHeight", 1, &"Sneak", &"YDirection", 0, &"Jump", &"YDirection", 1, &"Fall", &"Throwing", 0, &"Throw", &"Throwing", 1, &"InAir"]
+node_connections = [&"output", 0, &"Throwing", &"IHeight", 0, &"Idle", &"IHeight", 1, &"Crouch", &"InAir", 0, &"Landing", &"InAir", 1, &"YDirection", &"Landing", 0, &"Land", &"Landing", 1, &"Movement", &"Movement", 0, &"IHeight", &"Movement", 1, &"WHeight", &"Throwing", 0, &"Throw", &"Throwing", 1, &"InAir", &"WHeight", 0, &"Walk", &"WHeight", 1, &"Sneak", &"YDirection", 0, &"Jump", &"YDirection", 1, &"Fall"]
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_875am")
@@ -710,15 +710,15 @@ texture = ExtResource("1_u40yy")
 [node name="GameOverArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameOverArea"]
-position = Vector2(0, 1.5)
+position = Vector2(-0.5, 1.5)
 shape = SubResource("RectangleShape2D_7naqy")
 
 [node name="WalkingColider" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
+position = Vector2(-0.5, 1)
 shape = SubResource("RectangleShape2D_wpwwp")
 
 [node name="CrouchingCollider" type="CollisionShape2D" parent="."]
-position = Vector2(0, 11)
+position = Vector2(-0.5, 11)
 shape = SubResource("RectangleShape2D_6gkv7")
 
 [node name="Sound" parent="." instance=ExtResource("3_0t3rf")]

@@ -31,7 +31,7 @@ position = Vector2(1116, 336)
 [node name="Door" parent="." instance=ExtResource("1_rfj63")]
 
 [node name="Player" parent="." instance=ExtResource("2_laefl")]
-position = Vector2(112, 64)
+position = Vector2(189, 520)
 
 [node name="Background" type="Area2D" parent="."]
 position = Vector2(580, 306)

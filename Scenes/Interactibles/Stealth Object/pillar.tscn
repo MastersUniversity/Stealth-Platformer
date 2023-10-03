@@ -13,23 +13,28 @@ size = Vector2(10, 21)
 script = ExtResource("1_v2niw")
 
 [node name="InteractorRight" type="Area2D" parent="."]
+position = Vector2(5.5, 2.08165e-12)
 collision_layer = 7
 collision_mask = 7
 script = ExtResource("1_icflo")
 interact_text = "F - Hide"
+disengage_text = "Hidden"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractorRight"]
-position = Vector2(5.5, 2.08165e-12)
 shape = SubResource("RectangleShape2D_ue1r5")
 
 [node name="InteractorLeft" type="Area2D" parent="."]
+position = Vector2(-5.5, 2.08165e-12)
 collision_layer = 7
 collision_mask = 7
 script = ExtResource("1_icflo")
 interact_text = "F - Hide"
+disengage_text = "Hidden"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractorLeft"]
-position = Vector2(-5.5, 2.08165e-12)
 shape = SubResource("RectangleShape2D_k0ff7")
 
+[connection signal="disengaged" from="InteractorRight" to="." method="_on_interactor_right_disengaged"]
 [connection signal="interacted" from="InteractorRight" to="." method="_on_interactor_right_interacted"]
+[connection signal="disengaged" from="InteractorLeft" to="." method="_on_interactor_left_disengaged"]
+[connection signal="interacted" from="InteractorLeft" to="." method="_on_interactor_left_interacted"]

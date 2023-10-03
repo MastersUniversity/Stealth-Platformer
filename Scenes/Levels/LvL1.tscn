@@ -259,9 +259,6 @@ sources/1 = SubResource("TileSetScenesCollectionSource_aflhb")
 [node name="LvL1" type="Node2D"]
 script = ExtResource("1_qnllq")
 
-[node name="Player" parent="." instance=ExtResource("2_ax461")]
-position = Vector2(1319, 646)
-
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(577, 326)
 tile_set = SubResource("TileSet_qx2hr")
@@ -273,7 +270,10 @@ layer_1/modulate = Color(1, 1, 1, 1)
 layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
-layer_1/tile_data = PackedInt32Array(655198, 1, 65536, 851817, 1, 65536, 851824, 1, 65536, 917371, 1, 65536, 917377, 1, 65536, 786311, 1, 65536, 786319, 1, 65536, 982936, 1, 65536, 982941, 1, 65536, 917414, 1, 65536, 982958, 1, 65536, 917428, 1, 65536, 786366, 1, 65536, 720855, 1, 65536, 720859, 1, 65536, 1048540, 1, 65536, 720862, 1, 65536, 720865, 1, 65536, 1048561, 1, 65536, 851960, 1, 65536, 786434, 1, 65536, 983046, 1, 65536, 983051, 1, 65536, 983059, 1, 65536, 917534, 1, 65536)
+layer_1/tile_data = PackedInt32Array(655198, 1, 65536, 851817, 1, 65536, 851824, 1, 65536, 917371, 1, 65536, 917377, 1, 65536, 786311, 1, 65536, 786319, 1, 65536, 982936, 1, 65536, 982941, 1, 65536, 917414, 1, 65536, 982958, 1, 65536, 917428, 1, 65536, 786366, 1, 65536, 720855, 1, 65536, 720859, 1, 65536, 1048540, 1, 65536, 720862, 1, 65536, 720865, 1, 65536, 1048561, 1, 65536, 851960, 1, 65536, 786434, 1, 65536, 983046, 1, 65536, 983051, 1, 65536, 983059, 1, 65536, 917534, 1, 65536, 983056, 1, 131072, 917520, 1, 131072, 917519, 1, 131072, 983055, 1, 131072, 851966, 1, 131072, 851965, 1, 131072, 786429, 1, 131072, 786430, 1, 131072, 1048536, 1, 131072, 1048535, 1, 131072, 982999, 1, 131072, 983000, 1, 131072, 655305, 1, 131072, 655304, 1, 131072, 589768, 1, 131072, 589769, 1, 131072, 720779, 1, 131072, 720778, 1, 131072, 786314, 1, 131072, 786315, 1, 131072, 917374, 1, 131072, 851838, 1, 131072, 917366, 1, 131072, 851830, 1, 131072, 851821, 1, 131072, 786285, 1, 131072, 786284, 1, 131072, 851820, 1, 131072, 786278, 1, 131072, 720742, 1, 131072, 786274, 1, 131072, 720738, 1, 131072)
+
+[node name="Player" parent="." instance=ExtResource("2_ax461")]
+position = Vector2(1319, 646)
 
 [node name="Civilian" parent="." groups=["Enemies"] instance=ExtResource("4_6r4r1")]
 position = Vector2(1132, 620)
@@ -308,3 +308,68 @@ position = Vector2(-2720, 556)
 [node name="Door" parent="." instance=ExtResource("8_3ja03")]
 position = Vector2(-2961, 487)
 destination = "res://Win.tscn"
+
+[connection signal="area_entered" from="TileMap/StealthObject" to="TileMap/StealthObject" method="_on_area_entered" flags=18]
+[connection signal="area_exited" from="TileMap/StealthObject" to="TileMap/StealthObject" method="_on_area_exited" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@34199" to="TileMap/@Area2D@34199" method="_on_area_entered" flags=18]
+[connection signal="area_exited" from="TileMap/@Area2D@34199" to="TileMap/@Area2D@34199" method="_on_area_exited" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@34200" to="TileMap/@Area2D@34200" method="_on_area_entered" flags=18]
+[connection signal="area_exited" from="TileMap/@Area2D@34200" to="TileMap/@Area2D@34200" method="_on_area_exited" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@34201" to="TileMap/@Area2D@34201" method="_on_area_entered" flags=18]
+[connection signal="area_exited" from="TileMap/@Area2D@34201" to="TileMap/@Area2D@34201" method="_on_area_exited" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@34202" to="TileMap/@Area2D@34202" method="_on_area_entered" flags=18]
+[connection signal="area_exited" from="TileMap/@Area2D@34202" to="TileMap/@Area2D@34202" method="_on_area_exited" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@34203" to="TileMap/@Area2D@34203" method="_on_area_entered" flags=18]
+[connection signal="area_exited" from="TileMap/@Area2D@34203" to="TileMap/@Area2D@34203" method="_on_area_exited" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@34208" to="TileMap/@Area2D@34208" method="_on_area_entered" flags=18]
+[connection signal="area_exited" from="TileMap/@Area2D@34208" to="TileMap/@Area2D@34208" method="_on_area_exited" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@34209" to="TileMap/@Area2D@34209" method="_on_area_entered" flags=18]
+[connection signal="area_exited" from="TileMap/@Area2D@34209" to="TileMap/@Area2D@34209" method="_on_area_exited" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@34212" to="TileMap/@Area2D@34212" method="_on_area_entered" flags=18]
+[connection signal="area_exited" from="TileMap/@Area2D@34212" to="TileMap/@Area2D@34212" method="_on_area_exited" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@34213" to="TileMap/@Area2D@34213" method="_on_area_entered" flags=18]
+[connection signal="area_exited" from="TileMap/@Area2D@34213" to="TileMap/@Area2D@34213" method="_on_area_exited" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@34214" to="TileMap/@Area2D@34214" method="_on_area_entered" flags=18]
+[connection signal="area_exited" from="TileMap/@Area2D@34214" to="TileMap/@Area2D@34214" method="_on_area_exited" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@34215" to="TileMap/@Area2D@34215" method="_on_area_entered" flags=18]
+[connection signal="area_exited" from="TileMap/@Area2D@34215" to="TileMap/@Area2D@34215" method="_on_area_exited" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@34218" to="TileMap/@Area2D@34218" method="_on_area_entered" flags=18]
+[connection signal="area_exited" from="TileMap/@Area2D@34218" to="TileMap/@Area2D@34218" method="_on_area_exited" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@34219" to="TileMap/@Area2D@34219" method="_on_area_entered" flags=18]
+[connection signal="area_exited" from="TileMap/@Area2D@34219" to="TileMap/@Area2D@34219" method="_on_area_exited" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@34220" to="TileMap/@Area2D@34220" method="_on_area_entered" flags=18]
+[connection signal="area_exited" from="TileMap/@Area2D@34220" to="TileMap/@Area2D@34220" method="_on_area_exited" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@34221" to="TileMap/@Area2D@34221" method="_on_area_entered" flags=18]
+[connection signal="area_exited" from="TileMap/@Area2D@34221" to="TileMap/@Area2D@34221" method="_on_area_exited" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@34233" to="TileMap/@Area2D@34233" method="_on_area_entered" flags=18]
+[connection signal="area_exited" from="TileMap/@Area2D@34233" to="TileMap/@Area2D@34233" method="_on_area_exited" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@34234" to="TileMap/@Area2D@34234" method="_on_area_entered" flags=18]
+[connection signal="area_exited" from="TileMap/@Area2D@34234" to="TileMap/@Area2D@34234" method="_on_area_exited" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@34235" to="TileMap/@Area2D@34235" method="_on_area_entered" flags=18]
+[connection signal="area_exited" from="TileMap/@Area2D@34235" to="TileMap/@Area2D@34235" method="_on_area_exited" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@34236" to="TileMap/@Area2D@34236" method="_on_area_entered" flags=18]
+[connection signal="area_exited" from="TileMap/@Area2D@34236" to="TileMap/@Area2D@34236" method="_on_area_exited" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@34239" to="TileMap/@Area2D@34239" method="_on_area_entered" flags=18]
+[connection signal="area_exited" from="TileMap/@Area2D@34239" to="TileMap/@Area2D@34239" method="_on_area_exited" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@34240" to="TileMap/@Area2D@34240" method="_on_area_entered" flags=18]
+[connection signal="area_exited" from="TileMap/@Area2D@34240" to="TileMap/@Area2D@34240" method="_on_area_exited" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@34242" to="TileMap/@Area2D@34242" method="_on_area_entered" flags=18]
+[connection signal="area_exited" from="TileMap/@Area2D@34242" to="TileMap/@Area2D@34242" method="_on_area_exited" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@34243" to="TileMap/@Area2D@34243" method="_on_area_entered" flags=18]
+[connection signal="area_exited" from="TileMap/@Area2D@34243" to="TileMap/@Area2D@34243" method="_on_area_exited" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@34244" to="TileMap/@Area2D@34244" method="_on_area_entered" flags=18]
+[connection signal="area_exited" from="TileMap/@Area2D@34244" to="TileMap/@Area2D@34244" method="_on_area_exited" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@34245" to="TileMap/@Area2D@34245" method="_on_area_entered" flags=18]
+[connection signal="area_exited" from="TileMap/@Area2D@34245" to="TileMap/@Area2D@34245" method="_on_area_exited" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@34246" to="TileMap/@Area2D@34246" method="_on_area_entered" flags=18]
+[connection signal="area_exited" from="TileMap/@Area2D@34246" to="TileMap/@Area2D@34246" method="_on_area_exited" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@34247" to="TileMap/@Area2D@34247" method="_on_area_entered" flags=18]
+[connection signal="area_exited" from="TileMap/@Area2D@34247" to="TileMap/@Area2D@34247" method="_on_area_exited" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@34249" to="TileMap/@Area2D@34249" method="_on_area_entered" flags=18]
+[connection signal="area_exited" from="TileMap/@Area2D@34249" to="TileMap/@Area2D@34249" method="_on_area_exited" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@34250" to="TileMap/@Area2D@34250" method="_on_area_entered" flags=18]
+[connection signal="area_exited" from="TileMap/@Area2D@34250" to="TileMap/@Area2D@34250" method="_on_area_exited" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@34251" to="TileMap/@Area2D@34251" method="_on_area_entered" flags=18]
+[connection signal="area_exited" from="TileMap/@Area2D@34251" to="TileMap/@Area2D@34251" method="_on_area_exited" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@34252" to="TileMap/@Area2D@34252" method="_on_area_entered" flags=18]
+[connection signal="area_exited" from="TileMap/@Area2D@34252" to="TileMap/@Area2D@34252" method="_on_area_exited" flags=18]

@@ -15,9 +15,9 @@ func _process(delta):
 
 func _on_area_entered(area):
 	if area.get_parent().get_script() == Player:
-		old_visibility = MainGame.get_player_visibility()
-		MainGame.set_player_visibility(new_stealth[0], new_stealth[1])
-		print("stealthy")
-		print(MainGame.get_player_visibility())
+		area.get_parent().stealth_objects += 1
 
 
+func _on_area_exited(area):
+	if area.get_parent().get_script() == Player:
+		area.get_parent().stealth_objects -= 1

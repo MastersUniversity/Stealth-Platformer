@@ -12,3 +12,4 @@ script = ExtResource("1_yg17f")
 shape = SubResource("RectangleShape2D_gslk7")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
