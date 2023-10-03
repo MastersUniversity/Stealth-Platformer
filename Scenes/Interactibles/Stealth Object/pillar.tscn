@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://jhs06txr1afh"]
+
+[ext_resource type="Script" path="res://Scripts/Misc/Interactor.gd" id="1_icflo"]
+[ext_resource type="Script" path="res://Scenes/Interactibles/Stealth Object/Pillar.gd" id="1_v2niw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ue1r5"]
+size = Vector2(10, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k0ff7"]
+size = Vector2(10, 21)
+
+[node name="Pillar" type="Node2D"]
+script = ExtResource("1_v2niw")
+
+[node name="InteractorRight" type="Area2D" parent="."]
+position = Vector2(5.5, 2.08165e-12)
+collision_layer = 7
+collision_mask = 7
+script = ExtResource("1_icflo")
+interact_text = "F - Hide"
+disengage_text = "Hidden"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractorRight"]
+shape = SubResource("RectangleShape2D_ue1r5")
+
+[node name="InteractorLeft" type="Area2D" parent="."]
+position = Vector2(-5.5, 2.08165e-12)
+collision_layer = 7
+collision_mask = 7
+script = ExtResource("1_icflo")
+interact_text = "F - Hide"
+disengage_text = "Hidden"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractorLeft"]
+shape = SubResource("RectangleShape2D_k0ff7")
+
+[connection signal="disengaged" from="InteractorRight" to="." method="_on_interactor_right_disengaged"]
+[connection signal="interacted" from="InteractorRight" to="." method="_on_interactor_right_interacted"]
+[connection signal="disengaged" from="InteractorLeft" to="." method="_on_interactor_left_disengaged"]
+[connection signal="interacted" from="InteractorLeft" to="." method="_on_interactor_left_interacted"]

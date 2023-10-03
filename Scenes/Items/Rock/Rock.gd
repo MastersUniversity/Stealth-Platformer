@@ -35,6 +35,6 @@ func _on_body_entered(body):
 	
 	# Make a sound when the rock hits something, then stop the sound
 	$Sound.set_global_location_vector(self.global_position)
-	$Sound.sound_radius = 5
+	$Sound.sound_radius = 20
 	await get_tree().create_timer(0.25).timeout
 	$Sound.sound_radius = 0
