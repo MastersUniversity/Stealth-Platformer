@@ -6,6 +6,7 @@ var player_visibility = [51, 51]
 
 var alarm_triggered = false
 
+var number_of_alarmed_enemies := 0 as int
 
 func get_player_visibility():
 	return player_visibility

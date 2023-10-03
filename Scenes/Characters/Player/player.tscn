@@ -582,6 +582,7 @@ _data = {
 
 [sub_resource type="SystemFont" id="SystemFont_fwe8i"]
 font_names = PackedStringArray("Copperplate")
+subpixel_positioning = 0
 msdf_pixel_range = 8
 oversampling = 2.0
 
@@ -665,7 +666,7 @@ input_1/auto_advance = false
 input_1/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_sdhqy"]
-graph_offset = Vector2(-269.76, -127.58)
+graph_offset = Vector2(-382.769, -49.5709)
 nodes/Crouch/node = SubResource("AnimationNodeAnimation_1g2g3")
 nodes/Crouch/position = Vector2(-370, 100)
 nodes/Fall/node = SubResource("AnimationNodeAnimation_te0uw")
