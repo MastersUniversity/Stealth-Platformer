@@ -46,6 +46,7 @@ func alarm_reaction(alarm):
 			$Timer.paused = false
 	else:
 		nav_target = spawn_point
+		set_navigation_target(nav_target)
 		$Timer.paused = true
 		pursuing = false
 	
