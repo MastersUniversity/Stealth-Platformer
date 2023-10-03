@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cet5cwla6t6vm"]
 
-[ext_resource type="Texture2D" uid="uid://dsme4s1tt6e7x" path="res://Scenes/Misc/Images/download.png" id="1_52n24"]
+[ext_resource type="Texture2D" uid="uid://c3i3um6prdjyx" path="res://Scenes/Misc/Images/download.png" id="1_52n24"]
 [ext_resource type="Texture2D" uid="uid://hd7txxxohfjn" path="res://Scenes/Misc/Images/Black.png" id="2_wtgrg"]
 [ext_resource type="Texture2D" uid="uid://b1cixrxggjoyl" path="res://Scenes/Misc/Images/Try Again!.png" id="3_17atd"]
 [ext_resource type="Script" path="res://TryAgain.gd" id="4_s1827"]
@@ -24,6 +24,7 @@ offset_left = 306.0
 offset_top = 752.0
 offset_right = 879.0
 offset_bottom = 917.0
+text = "T"
 icon = ExtResource("3_17atd")
 icon_alignment = 1
 script = ExtResource("4_s1827")

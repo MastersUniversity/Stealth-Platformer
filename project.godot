@@ -11,10 +11,12 @@ config_version=5
 [application]
 
 config/name="Stealth-platformer"
-run/main_scene="res://main_game.tscn"
+run/main_scene="res://Scenes/Levels/title.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
-config/icon="res://icon.svg"
+boot_splash/image="res://Rock_Icon.png"
+boot_splash/fullsize=false
+config/icon="res://Rock_Icon.png"
 
 [autoload]
 
@@ -74,4 +76,4 @@ Interact={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-environment/defaults/default_clear_color=Color(0, 0, 0.156863, 1)
+environment/defaults/default_clear_color=Color(0.388235, 0.52549, 0.388235, 1)

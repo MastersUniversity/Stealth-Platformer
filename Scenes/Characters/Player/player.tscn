@@ -665,7 +665,7 @@ input_1/auto_advance = false
 input_1/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_sdhqy"]
-graph_offset = Vector2(-269.76, -127.58)
+graph_offset = Vector2(-40.32, -110.4)
 nodes/Crouch/node = SubResource("AnimationNodeAnimation_1g2g3")
 nodes/Crouch/position = Vector2(-370, 100)
 nodes/Fall/node = SubResource("AnimationNodeAnimation_te0uw")
@@ -832,6 +832,9 @@ parameters/WHeight/current_index = 0
 parameters/YDirection/current_state = "fall"
 parameters/YDirection/transition_request = ""
 parameters/YDirection/current_index = 1
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+current = true
 
 [connection signal="area_entered" from="GameOverArea" to="." method="_on_game_over_area_area_entered"]
 [connection signal="area_exited" from="GameOverArea" to="." method="_on_game_over_area_area_exited"]

@@ -2,9 +2,9 @@ class_name Player extends CharacterBody2D
 
 # Constants for player movement
 const SPEED = 100.0
-const WALK_SOUND = 4.0
+const WALK_SOUND = 8.0
 const CROUCH_SPEED = 35.0
-const CROUCH_SOUND = 2.0
+const CROUCH_SOUND = 4.0
 const JUMP_VELOCITY = -300.0
 
 
