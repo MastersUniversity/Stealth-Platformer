@@ -69,7 +69,8 @@ func check_direction(targetLocation):
 		scale.x *= -1
 		faceLeft = false
 		
-	
+#Timeout function is used to update target's position for enemy, whether it's moving or not
+#
 func _on_timer_timeout():
 	check_direction(nav_target.get_global_position())
 	set_navigation_target(nav_target.get_global_position())
